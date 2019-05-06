@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$/1_rempunct.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dest/1.txt" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/old_dest/1.txt" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/source/1.txt" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/stops_removed/1.txt" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/stops_removed/1.txt" charset="windows-1252" />
+  </component>
+</project>
