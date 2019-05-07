@@ -7,6 +7,7 @@ import requests
 import time
 import scrapy
 import csv
+from pymongo import MongoClient
 
 
 def getData():
@@ -57,19 +58,21 @@ if __name__== "__main__":
                 continue # skip duplicate
             seen.add(line)
             out_file.write(line)
-    with open('links_distinct.csv', mode='rU') as guardian:
-        for line in guardian:
-            obj={}
-            url=line.strip()
-            article=NewsPlease.from_url(url)
-            obj['title']=article.title
-            obj["language"]=article.language
-            obj["source_domain"]=article.source_domain
-            obj["url"]=article.url
-            obj["filename"]=article.filename
-            obj["description"]=article.description
-            obj["text"]=article.text
-            obj["authors"]=article.authors
-            obj["url"]=article.url
-            json_obj=json.dumps(obj)
-            print(json_obj)
+    with open('sample.csv', mode='w') as write_file:
+        csv_writer=csv.writer(write_file)
+        with open('test.csv', mode='rU') as read_file:
+            for line in read_file:
+                obj={}
+                url=line.strip()
+                article=NewsPlease.from_url(url)
+                obj['title']=article.title
+                obj["language"]=article.language
+                obj["source_domain"]=article.source_domain
+                obj["filename"]=article.filename
+                obj["description"]=article.description
+                obj["authors"]=article.authors
+                obj["url"]=article.url
+                obj["text"]=article.text
+                json_obj=json.dumps(obj)
+                csv_writer.writerow([json_obj])
+                print(json_obj)
