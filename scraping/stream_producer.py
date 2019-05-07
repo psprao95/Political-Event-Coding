@@ -50,8 +50,26 @@ def connect_kafka_producer():
         return producer
 
 if __name__== "__main__":
-    with open('links.csv', mode='rU') as guardian:
+    with open('links.csv','r') as in_file, open('links_distinct.csv','w') as out_file:
+        seen = set()
+        for line in in_file:
+            if line in seen:
+                continue # skip duplicate
+            seen.add(line)
+            out_file.write(line)
+    with open('links_distinct.csv', mode='rU') as guardian:
         for line in guardian:
+            obj={}
             url=line.strip()
             article=NewsPlease.from_url(url)
-            print(article.title)
+            obj['title']=article.title
+            obj["language"]=article.language
+            obj["source_domain"]=article.source_domain
+            obj["url"]=article.url
+            obj["filename"]=article.filename
+            obj["description"]=article.description
+            obj["text"]=article.text
+            obj["authors"]=article.authors
+            obj["url"]=article.url
+            json_obj=json.dumps(obj)
+            print(json_obj)
