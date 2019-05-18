@@ -30,11 +30,6 @@ def publish_message(producer_instance, value):
         print('Exception in publishing message')
         print(str(ex))
 
-def parse(self, response):
-    # Get anchor tags
-    links = response.css('a::attr(href)').extract()
-    for link in links:
-        print(link)
 
 def connect_kafka_producer():
     producer = None
